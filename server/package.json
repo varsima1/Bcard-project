@@ -1,0 +1,29 @@
+{
+  "name": "b-card-serverside",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "set NODE_ENV=production&& node .",
+    "test": "node test",
+    "dev": "set NODE_ENV=development&& nodemon ."
+  },
+  "keywords": [],
+  "author": "luka varsimashvili",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chalk": "^4.1.1",
+    "config": "^3.3.9",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^7.4.1",
+    "morgan": "^1.10.0"
+  }
+}

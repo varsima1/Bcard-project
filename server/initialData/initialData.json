@@ -1,0 +1,114 @@
+{
+  "cards": [
+    {
+      "title": "first",
+      "subtitle": "first card subtitle",
+      "description": "first card description",
+      "phone": "050-5555555",
+      "email": "firstcard@gmail.com",
+      "web": "",
+      "image": {
+        "url": "",
+        "alt": ""
+      },
+      "address": {
+        "state": "",
+        "country": "israel",
+        "city": "lod",
+        "street": "marzuk",
+        "houseNumber": "4",
+        "zip": ""
+      }
+    },
+    {
+      "title": "second",
+      "subtitle": "second card subtitle",
+      "description": "second card description",
+      "phone": "050-5555555",
+      "email": "second@gmail.com",
+      "web": "",
+      "image": {
+        "url": "",
+        "alt": ""
+      },
+      "address": {
+        "state": "",
+        "country": "israel",
+        "city": "lod",
+        "street": "marzuk",
+        "houseNumber": "4",
+        "zip": ""
+      }
+    },
+    {
+      "title": "third",
+      "subtitle": "third card subtitle",
+      "description": "first card description",
+      "phone": "050-5555555",
+      "email": "third@gmail.com",
+      "web": "",
+      "image": {
+        "url": "",
+        "alt": ""
+      },
+      "address": {
+        "state": "",
+        "country": "israel",
+        "city": "lod",
+        "street": "marzuk",
+        "houseNumber": "4",
+        "zip": ""
+      }
+    }
+  ],
+  "users": [
+    {
+      "name": { "first": "business", "last": "user" },
+      "password": "Aa1234!",
+      "phone": "052-4425696",
+      "email": "business@gmail.com",
+      "image": {},
+      "address": {
+        "state": "",
+        "country": "israel",
+        "city": "lod",
+        "street": "marzuk",
+        "houseNumber": "5",
+        "zip": "34"
+      },
+      "isBusiness": true
+    },
+    {
+      "name": { "first": "reguar", "last": "user" },
+      "password": "Aa1234!",
+      "phone": "052-4425696",
+      "email": "regular@gmail.com",
+      "image": {},
+      "address": {
+        "state": "",
+        "country": "israel",
+        "city": "lod",
+        "street": "marzuk",
+        "houseNumber": "5",
+        "zip": "34"
+      }
+    },
+    {
+      "name": { "first": "admin", "last": "user" },
+      "password": "Aa1234!",
+      "phone": "052-4425696",
+      "email": "admin@gmail.com",
+      "image": {},
+      "address": {
+        "state": "",
+        "country": "israel",
+        "city": "lod",
+        "street": "marzuk",
+        "houseNumber": "5",
+        "zip": "34"
+      },
+      "isBusiness": true,
+      "isAdmin": true
+    }
+  ]
+}
