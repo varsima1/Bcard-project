@@ -18,7 +18,7 @@ app.use(router);
 app.use(express.text());
 app.use(express.static("./public"));
 
-const PORT = config.get("PORT") || 9000;
+const PORT = config.get("PORT") || 9191;
 
 app.listen(PORT, async () => {
   console.log(chalk.blueBright(`Listening on: http://localhost:${PORT}`));

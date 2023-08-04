@@ -1,324 +1,319 @@
 # Backend
 
-Backend project in node js
-
-# Getting Started with node server App
+This is a backend project written in Node.js that provides functionality for managing users and business cards. Below are the instructions for getting started with the node server app.
 
 ## Installation
 
-Enter the server folder
+To set up the project, follow these steps:
+
+1. Enter the server folder using the terminal:
 
 ```bash
 cd server
 ```
 
-Install the node_modules
+2. Install the required node modules:
 
 ```bash
 npm i
 ```
 
-## configuration
+## Configuration
 
-- to confecting to your Atlas mongoDB you need to config development json file in config folder
-- you need put your userName and your password
-- example:
-  - {
-    "NODE_ENV": "development",
-    "PORT": 8181,
-    "DB_NAME": "userName",
-    "DB_PASSWORD": "password",
- 
-    }
+Before running the application, you need to configure the connection to your Atlas MongoDB. To do this, create a development JSON file in the config folder and include your MongoDB username and password. Here's an example of how the configuration file should look like:
+
+```json
+{
+  "NODE_ENV": "development",
+  "PORT": 8181,
+  "DB_NAME": null,
+  "DB_PASSWORD": null
+}
+```
 
 ## Available Scripts
 
-you can run:
+You can use the following scripts to run the application:
 
 ### `npm start`
 
-- It will run the app with node
+- This will run the app using node.
 - The page will not reload if you make edits.
-- You must have a mongoDB Atlas Cluster (look in configuration)
-- the server wos listening on `http://localhost:8181`
-  And if there are no login errors you should see the message painted in purple:
-  `connected to Atlas mongoDB`
+- You must have a MongoDB Atlas Cluster (as specified in the configuration).
+- The server will be listening on `http://localhost:8181`.
+- If there are no login errors, you should see the message painted in purple: `connected to Atlas mongoDB`.
 
 ### `npm run dev`
 
-- Runs the app with nodemon
-- The page will reload if you make edits
-- The print at the terminal will be the message:
-- `in server.js`
-- `Listening on: http://localhost:9191`
+- This script runs the app using nodemon, which allows automatic reloading when you make edits.
+- The server will be listening on `http://localhost:9191`.
+- If there are no login errors, you should see the message painted in purple: `connected to MongoDb Locally!`.
 
-And if there are no login errors you should see the message painted in purple:
+## CORS Permissions
 
-`connected to MongoDb Locally!`
+In order to be able to intercept requests to the server, you are required to provide a legacy address to the origin key in the headers object. You can use one of the following addresses:
 
-## cors permissions
-
-- In order to be able to intercept requests to the server, you are required to provide a legacy
-  address to the origin key in the headers object
-- `origin:"http://localhost:3000"`
-  or
-- `origin:"http://127.0.0.1:5500"`
+- `origin: "http://localhost:3000"`
+- `origin: "http://127.0.0.1:5501"`
+- `origin: "http://127.0.0.1:3000"`
 
 ## Available Routes
 
-Here you can find API addresses that the server will respond to as well as what should be sent to them in the body of the HTTP request and what permissions are required to receive a response from a specific API
+Below are the API addresses that the server will respond to, along with the required request body parameters and the permissions required to receive a response.
 
 ### Users API
 
-#### API for Register a new user
+#### API for Registering a New User
 
 ```http
-  POST /api/users
+POST /api/users
 ```
 
-#### Request
+##### Request
 
-In the request body you will need to provide an object with the following keys and values
+In the request body, provide an object with the following keys and values:
 
-| index      | type    | index       | type   | min | max | remark         |
-| ---------- | ------- | ----------- | ------ | --- | --- | -------------- |
-| name       | object  |             |        |     |     | required       |
-|            |         | first       | string | 2   | 256 | required       |
-|            |         | middle      | string | 2   | 256 |                |
-|            |         | last        | string | 2   | 256 | required       |
-| phone      | string  |             |        | 9   | 11  | required       |
-| email      | string  |             |        | 5   |     | required       |
-| password   | string  |             |        | 7   | 20  | required       |
-| image      | object  |             |        |     |     | required       |
-|            |         | url         | string | 14  |     |                |
-|            |         | alt         | string | 2   | 256 |                |
-| address    | object  |             |        |     |     | required       |
-|            |         | state       | string | 2   | 256 |                |
-|            |         | country     | string | 2   | 256 | required       |
-|            |         | city        | string | 2   | 256 | required       |
-|            |         | street      | string | 2   | 256 | required       |
-|            |         | houseNumber | number | 2   | 256 | required       |
-|            |         | zip         | number | 2   | 256 | required       |
-| isBusiness | boolean |             |        |     |     | default(fulls) |
+| Index      | Type    | Index       | Type   | Min | Max | Remark       |
+| ---------- | ------- | ----------- | ------ | --- | --- | ------------ |
+| name       | object  |             |        |     |     | Required     |
+|            |         | first       | string | 2   | 256 | Required     |
+|            |         | middle      | string | 2   | 256 |              |
+|            |         | last        | string | 2   | 256 | Required     |
+| phone      | string  |             |        | 9   | 11  | Required     |
+| email      | string  |             |        | 5   |     | Required     |
+| password   | string  |             |        | 7   | 20  | Required     |
+| image      | object  |             |        |     |     | Required     |
+|            |         | url         | string | 14  |     |              |
+|            |         | alt         | string | 2   | 256 |              |
+| address    | object  |             |        |     |     | Required     |
+|            |         | state       | string | 2   | 256 |              |
+|            |         | country     | string | 2   | 256 | Required     |
+|            |         | city        | string | 2   | 256 | Required     |
+|            |         | street      | string | 2   | 256 | Required     |
+|            |         | houseNumber | number | 2   | 256 | Required     |
+|            |         | zip         | number | 2   | 256 | Required     |
+| isBusiness | boolean |             |        |     |     | Default(full) |
 
-- "password" must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number and one of the following characters !@#$%^&\*-
-- "phone" must be a standard Israeli phone number
-- "email" must be a standard email
-- "image/url" must be a standard URL
+- The "password" must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number, and one of the following characters: !@#$%^&\*-
+- The "phone" must be a standard Israeli phone number
+- The "email" must be a standard email
+- The "image/url" must be a standard URL
 
-#### API for Login a user
+#### API for User Login
 
 ```http
-  POST /api/users/login
+POST /api/users/login
 ```
 
-### Request
+##### Request
 
-In the request body you will need to provide an object with the following keys and values
+In the request body, provide an object with the following keys and values:
 
-| index    | type   | min | max | remark   |
+| Index    | Type   | Min | Max | Remark   |
 | -------- | ------ | --- | --- | -------- |
-| email    | string | 5   |     | required |
-| password | string | 7   | 20  | required |
+| email    | string | 5   |     | Required |
+| password | string | 7   | 20  | Required |
 
-- "email" must be a standard email
-- "password" must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number and one of the following characters !@#$%^&\*-
+- The "email" must be a standard email
+- The "password" must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number, and one of the following characters: !@#$%^&\*-
 
-### Response
+##### Response
 
-If the user is in the database and the password sent is correct, a token will be returned and the following object can be extracted from it with the help of the jwt-decode library
+If the user is in the database and the password sent is correct, a token will be returned. You can extract the following object from the token using the jwt-decode library:
 
-| index      | type    |
+| Index      | Type    |
 | ---------- | ------- |
 | \_id       | string  |
 | isBusiness | boolean |
 | isAdmin    | boolean |
 
-#### API for Information about all the users
+#### API for Getting Information about All Users
 
 ```http
-  GET /api/users
+GET /api/users
 ```
 
-### Request
+##### Request
 
-- You will need to provide a token to get an answer from this api
-- You will need to be Admin type user to get an answer from this api
+- You need to provide a token to get a response from this API.
+- You must be an Admin type user to get a response from this API.
 
-#### API for Information about a user
+#### API for Getting Information about a Specific User
 
 ```http
-  GET /api/users/:id
+GET /api/users/:id
 ```
 
-### Request
+##### Request
 
-- You will need to provide a token to get an answer from this api
-- You will need to be the registered user or Admin type user to get an answer from this api
+- You need to provide a token to get a response from this API.
+- You must be the registered user or an Admin type user to get a response from this API.
 
-#### API for Updating User information
+#### API for Updating User Information
 
 ```http
-  PUT /api/users/:id
+PUT /api/users/:id
 ```
 
-### Request
+##### Request
 
-In the request body you will need to provide an object with the following keys and values
+In the request body, provide an object with the following keys and values:
 
-| index      | type    | index       | type   | min | max | remark         |
-| ---------- | ------- | ----------- | ------ | --- | --- | -------------- |
-| name       | object  |             |        |     |     | required       |
-|            |         | first       | string | 2   | 256 | required       |
-|            |         | middle      | string | 2   | 256 |                |
-|            |         | last        | string | 2   | 256 | required       |
-| phone      | string  |             |        | 9   | 11  | required       |
-| email      | string  |             |        | 5   |     | required       |
-| password   | string  |             |        | 7   | 20  | required       |
-| image      | object  |             |        |     |     | required       |
-|            |         | url         | string | 14  |     |                |
-|            |         | alt         | string | 2   | 256 |                |
-| address    | object  |             |        |     |     | required       |
-|            |         | state       |        | 2   | 256 |                |
-|            |         | country     |        | 2   | 256 | required       |
-|            |         | city        |        | 2   | 256 | required       |
-|            |         | street      |        | 2   | 256 | required       |
-|            |         | houseNumber |        | 2   | 256 | required       |
-|            |         | zip         |        | 2   | 256 | required       |
-| isBusiness | boolean |             |        |     |     | default(fulls) |
+| Index      | Type    | Index       | Type   | Min | Max | Remark       |
+| ---------- | ------- | ----------- | ------ | --- | --- | ------------ |
+| name       | object  |             |        |     |     | Required     |
+|            |         | first       | string | 2   | 256 | Required     |
+|            |         | middle      | string | 2   | 256 |              |
+|            |         | last        | string | 2   | 256 | Required     |
+| phone      | string  |             |        | 9   | 11  | Required     |
+| email      | string  |             |        | 5   |     | Required     |
+| password   | string  |             |        | 7   | 20  | Required     |
+| image      | object  |             |        |     |     | Required     |
+|            |         | url         | string | 14  |     |              |
+|            |         | alt         | string | 2   | 256 |              |
+| address
 
-- The user "password" must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number and one of the following characters !@#$%^&\*-
-- "phone" must be a standard Israeli phone number
-- "email" must be a standard email
-- "image/url" must be a standard URL
-- You will need to provide a token to get an answer from this api
-- You will need to be the registered user or Admin to get an answer from this api
+    | object  |             |        |     |     | Required     |
+|            |         | state       | string |     |     |              |
+|            |         | country     | string |     |     | Required     |
+|            |         | city        | string |     |     | Required     |
+|            |         | street      | string |     |     | Required     |
+|            |         | houseNumber | number | 1   |     | Required     |
+|            |         | zip         | number |     |     |              |
+| isBusiness | boolean |             |        |     |     | Default(full) |
 
-#### API for deleting a user
+- The user's "password" must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number, and one of the following characters: !@#$%^&\*-
+- The "phone" must be a standard Israeli phone number
+- The "email" must be a standard email
+- The "image/url" must be a standard URL
+- You need to provide a token to get a response from this API.
+- You must be the registered user or an Admin to get a response from this API.
+
+#### API for Deleting a User
 
 ```http
-  DELETE /api/users/:id
+DELETE /api/users/:id
 ```
 
-- You will need to provide a token to get an answer from this api
-- You will need to be the registered user or Admin to get an answer from this api
+- You need to provide a token to get a response from this API.
+- You must be the registered user or an Admin to get a response from this API.
 
-#### API for changing user business status
+#### API for Changing User Business Status
 
 ```http
-  PATCH /api/users/:id
+PATCH /api/users/:id
 ```
 
-- You will need to provide a token to get an answer from this api
-- You will need to be the registered user or Admin to get an answer from this api
+- You need to provide a token to get a response from this API.
+- You must be the registered user or an Admin to get a response from this API.
 
 ### Cards API
 
-#### API to get all business cards
+#### API to Get All Business Cards
 
 ```http
-  GET /api/cards/
+GET /api/cards/
 ```
 
-#### API for get a business card of a specific business
+#### API for Getting a Business Card of a Specific Business
 
 ```http
-  GET /api/cards/:id
+GET /api/cards/:id
 ```
 
-#### API for receive all business cards of the registered user
+#### API for Receiving All Business Cards of the Registered User
 
 ```http
-  GET /api/cards/my-cards
+GET /api/cards/my-cards
 ```
 
-- You will need to provide a token to get an answer from this api
+- You need to provide a token to get a response from this API.
 
-#### API for create a new business card
+#### API for Creating a New Business Card
 
 ```http
-  POST /api/cards/
+POST /api/cards/
 ```
 
-### Request
+##### Request
 
-In the request body you will need to provide an object with the following keys and values
+In the request body, provide an object with the following keys and values:
 
-| index       | type   | index       | type   | min | max  | remark   |
+| Index       | Type   | Index       | Type   | Min | Max  | Remark   |
 | ----------- | ------ | ----------- | ------ | --- | ---- | -------- |
-| title       | string |             |        | 2   | 256  | required |
-| subtitle    | string |             |        | 2   | 256  | required |
-| description | string |             |        | 2   | 1024 | required |
-| phone       | string |             |        | 9   | 11   | required |
-| email       | string |             |        | 5   |      | required |
+| title       | string |             |        | 2   | 256  | Required |
+| subtitle    | string |             |        | 2   | 256  | Required |
+| description | string |             |        | 2   | 1024 | Required |
+| phone       | string |             |        | 9   | 11   | Required |
+| email       | string |             |        | 5   |      | Required |
 | web         | string |             |        | 14  |      |          |
-| image       | object |             |        |     |      | required |
+| image       | object |             |        |     |      | Required |
 |             |        | url         | string | 14  |      |          |
 |             |        | alt         | string | 2   | 256  |          |
-| address     | object |             |        |     |      | required |
+| address     | object |             |        |     |      | Required |
 |             |        | state       | string |     |      |          |
-|             |        | country     | string |     |      | required |
-|             |        | city        | string |     |      | required |
-|             |        | street      | string |     |      | required |
-|             |        | houseNumber | number | 1   |      | required |
+|             |        | country     | string |     |      | Required |
+|             |        | city        | string |     |      | Required |
+|             |        | street      | string |     |      | Required |
+|             |        | houseNumber | number | 1   |      | Required |
 |             |        | zip         | number |     |      |          |
 
-- "phone" must be a standard Israeli phone number
-- "email" must be a standard email
-- "web" must be a standard URL
-- "image/url" must be a standard URL
-- You will need to provide a token to get an answer from this api
-- You will need to be a Business type user to get an answer from this api
+- The "phone" must be a standard Israeli phone number
+- The "email" must be a standard email
+- The "web" must be a standard URL
+- The "image/url" must be a standard URL
+- You need to provide a token to get a response from this API.
+- You must be a Business type user to get a response from this API.
 
-#### API for updating business card information
+#### API for Updating Business Card Information
 
 ```http
-  PUT /api/cards/:id
+PUT /api/cards/:id
 ```
 
-### Request
+##### Request
 
-In the request body you will need to provide an object with the following keys and values
+In the request body, provide an object with the following keys and values:
 
-| index       | type   | index       | type   | min | max  | remark   |
+| Index       | Type   | Index       | Type   | Min | Max  | Remark   |
 | ----------- | ------ | ----------- | ------ | --- | ---- | -------- |
-| title       | string |             |        | 2   | 256  | required |
-| subtitle    | string |             |        | 2   | 256  | required |
-| description | string |             |        | 2   | 1024 | required |
-| phone       | string |             |        | 9   | 11   | required |
-| email       | string |             |        | 5   |      | required |
+| title       | string |             |        | 2   | 256  | Required |
+| subtitle    | string |             |        | 2   | 256  | Required |
+| description | string |             |        | 2   | 1024 | Required |
+| phone       | string |             |        | 9   | 11   | Required |
+| email       | string |             |        | 5   |      | Required |
 | web         | string |             |        | 14  |      |          |
-| image       | object |             |        |     |      | required |
+| image       | object |             |        |     |      | Required |
 |             |        | url         | string | 14  |      |          |
 |             |        | alt         | string | 2   | 256  |          |
-| address     | object |             |        |     |      | required |
+| address     | object |             |        |     |      | Required |
 |             |        | state       | string |     |      |          |
-|             |        | country     | string |     |      | required |
-|             |        | city        | string |     |      | required |
-|             |        | street      | string |     |      | required |
-|             |        | houseNumber | number | 1   |      | required |
+|             |        | country     | string |     |      | Required |
+|             |        | city        | string |     |      | Required |
+|             |        | street      | string |     |      | Required |
+|             |        | houseNumber | number | 1   |      | Required |
 |             |        | zip         | number |     |      |          |
 
-- "phone" must be a standard Israeli phone number
-- "email" must be a standard email
-- "web" must be a standard URL
-- "image/url" must be a standard URL
-- You will need to provide a token to get an answer from this api
-- You will need to be a Business type user to get an answer from this api
+- The "phone" must be a standard Israeli phone number
+- The "email" must be a standard email
+- The "web" must be a standard URL
+- The "image/url" must be a standard URL
+- You need to provide a token to get a response from this API.
+- You must be a Business type user to get a response from this API.
 
-#### API for liking a business card
-
-```http
-	PATCH /api/cards/:id
-```
-
-- You will need to provide a token to get an answer from this api
-
-#### API for deleting a business card
+#### API for Liking a Business Card
 
 ```http
-  DELETE /api/cards/:id
+PATCH /api/cards/:id
 ```
 
-- You will need to provide a token to get an answer from this api
-- You must be the user who created the card or an admin in order to delete the business card
+- You need to provide a token to get a response from this API.
+
+#### API for Deleting a Business Card
+
+```http
+DELETE /api/cards/:id
+```
+
+- You need to provide a token to get a response from this API.
+- You must be the user who created the card or an admin to delete the business card.
