@@ -8,6 +8,7 @@ import initialSignupForm from "../helpers/initialForms/initialSignupForm";
 import useHandleUser from "../hooks/useHandleUser";
 import signupSchema from "../models/joi-schema/signupSchema";
 
+
 const SignupPage = () => {
   const {
     handleSignup,
@@ -20,6 +21,7 @@ const SignupPage = () => {
   );
 
   if (user) return <Navigate replace to={ROUTES.ROOT} />;
+
   return (
     <Container
       sx={{
