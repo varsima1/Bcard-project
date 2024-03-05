@@ -13,7 +13,7 @@ const Logo = () => {
         marginRight: 2,
         fontFamily: "fantasy",
       }}>
-      BCard
+      <img src="./image/logo.png" alt="" />
     </Typography>
     </NavBarLink>
   );
